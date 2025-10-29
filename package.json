@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "demo": "npx playwright test tests/demo/init-test.spec.ts --headed"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
