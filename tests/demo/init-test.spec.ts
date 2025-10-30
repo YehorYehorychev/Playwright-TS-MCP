@@ -10,3 +10,40 @@ test("Should load homepage with correct title", async ({ page }) => {
   // 3. Assert header text
   await expect(page.locator("//h1")).toHaveText("CURA Healthcare Service");
 });
+
+test("Should do something", { tag: "@smoke" }, async ({ page }) => {
+  // 1. Open the page and wait for full load
+  await page.goto("https://katalon-demo-cura.herokuapp.com/", {
+    waitUntil: "domcontentloaded",
+  });
+
+  // 2. Wait for header to appear before clicking
+  const header = page.locator("//h1");
+  await expect(header).toBeVisible();
+
+  // 3. Click the header safely
+  await header.click();
+
+  // 4. Optional: verify something after click
+  await expect(page).toHaveURL(/herokuapp/);
+});
+
+test("Should demo locators", async ({ page }) => {
+  // ✅ `page.getBy*()` and `page.locator()` methods returns the `locator` object
+  // ✅ The above methods not to be `awaited`
+  // ✅ The type of locator is an `object`
+  // ✅ Locators are LAZY until an action is fired on them
+
+  // 1. Launch URL
+  await page.goto("https://katalon-demo-cura.herokuapp.com/");
+
+  // 2. Click on the Make Appointment
+  let makeAppmtBtn = page.getByRole("link", { name: "Invalid Locator" });
+  // console.log(`>> The type of locator: ${typeof makeAppmtBtn}, The value of the locator is: ${JSON.stringify(makeAppmtBtn)}`);
+  // await makeAppmtBtn.click();
+  // await expect(page.getByText("Please login to make")).toBeVisible();
+
+  await page
+    .getByRole("heading", { name: "We Care About Your Health" })
+    .click();
+});

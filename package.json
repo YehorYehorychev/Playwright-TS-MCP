@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "demo": "npx playwright test tests/demo/init-test.spec.ts --headed"
+    "demo": "npx playwright test tests/demo/init-test.spec.ts --headed",
+    "login": "npx playwright test tests/functional/login.spec.ts --headed"
   },
   "keywords": [],
   "author": "",
