@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
-// Hooks
 test.describe("Login functionality", { tag: "@demo" }, () => {
+  // Hooks
   test.beforeEach("Go to login page", async ({ page }) => {
     // 1. Launch URL and assert title and header
     await page.goto("https://katalon-demo-cura.herokuapp.com/");
