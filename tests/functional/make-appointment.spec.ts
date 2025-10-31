@@ -20,24 +20,40 @@ test.describe("Make an appointment", () => {
     await expect(page.locator("h2")).toContainText("Make Appointment");
   });
 
-  test("Should be able to make an appointment", async ({ page }) => {
-    await page.goto("https://katalon-demo-cura.herokuapp.com/");
-
+  test("Should make an appointment with non-default values", async ({
+    page,
+  }) => {
+    // Dropdown
     await page
-      .getByRole("checkbox", { name: "Apply for hospital readmission" })
-      .check();
+      .getByLabel("Facility")
+      .selectOption("Hongkong CURA Healthcare Center");
 
-    await page.getByRole("radio", { name: "Medicaid" }).check();
+    // Checkbox
+    await page.getByText("Apply for hospital readmission").click();
+
+    // Radio button
+    await page.getByText("Medicaid").click();
+
+    // Date input box
     await page.getByRole("textbox", { name: "Visit Date (Required)" }).click();
-    await page.getByRole("cell", { name: "30" }).nth(1).click();
+    await page
+      .getByRole("textbox", { name: "Visit Date (Required)" })
+      .fill("05/10/2027");
+    await page
+      .getByRole("textbox", { name: "Visit Date (Required)" })
+      .press("Enter");
+
+    // Multi-line comments input box
     await page.getByRole("textbox", { name: "Comment" }).click();
     await page
       .getByRole("textbox", { name: "Comment" })
-      .fill("This a multi-line comments,\nplaywright codegen");
+      .fill("This is a multi-line comments\ncaptured by Playwright codegen!");
+
+    // Button
     await page.getByRole("button", { name: "Book Appointment" }).click();
 
+    // Assertion
     await expect(page.locator("h2")).toContainText("Appointment Confirmation");
-    await expect(page.getByText("Please be informed that your")).toBeVisible();
     await expect(
       page.getByRole("link", { name: "Go to Homepage" })
     ).toBeVisible();
