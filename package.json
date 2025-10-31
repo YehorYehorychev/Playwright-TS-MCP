@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "demo": "npx playwright test tests/demo/init-test.spec.ts --headed",
+    "make-apt": "npx playwright test tests/functional/make-appointment.spec.ts --headed",
     "login": "npx playwright test tests/functional/login.spec.ts --headed"
   },
   "keywords": [],
