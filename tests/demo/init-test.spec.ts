@@ -48,6 +48,7 @@ test("Should demo locators", async ({ page }) => {
     .click();
 });
 
+// testInfo fixure
 test(
   "Should demo config file",
   { tag: "@smoke" },
@@ -58,6 +59,7 @@ test(
   }
 );
 
+// browserName fixture
 test.only(
   "Should demo the fixures",
   { tag: "@smoke" },

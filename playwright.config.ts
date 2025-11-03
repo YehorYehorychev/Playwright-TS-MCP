@@ -52,6 +52,7 @@ export default defineConfig({
     trace: "on-first-retry",
     ignoreHTTPSErrors: true,
     navigationTimeout: 30_000,
+    screenshot: "on",
   },
 
   /* Configure projects for major browsers */
