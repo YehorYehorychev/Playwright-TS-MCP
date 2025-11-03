@@ -22,7 +22,7 @@ test.describe("Make an appointment", () => {
 
   test("Should make an appointment with non-default values", async ({
     page,
-  }) => {
+  }, testInfo) => {
     // Dropdown
     await page
       .getByLabel("Facility")
@@ -57,5 +57,13 @@ test.describe("Make an appointment", () => {
     await expect(
       page.getByRole("link", { name: "Go to Homepage" })
     ).toBeVisible();
+
+    // Add custom screenshot at test scope level
+    // @TODO add this as a helper function
+    const screenshot = await page.screenshot({ fullPage: true });
+    testInfo.attach("Login Page", {
+      body: screenshot,
+      contentType: "image/png",
+    });
   });
 });
