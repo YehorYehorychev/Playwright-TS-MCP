@@ -48,12 +48,20 @@ test("Should demo locators", async ({ page }) => {
     .click();
 });
 
-test.only(
+test(
   "Should demo config file",
   { tag: "@smoke" },
   async ({ page }, testInfo) => {
     console.log(
       `>> Config at runtime: ${JSON.stringify(testInfo.config, null, 2)}`
     );
+  }
+);
+
+test.only(
+  "Should demo the fixures",
+  { tag: "@smoke" },
+  async ({ page, browserName }, testInfo) => {
+    console.log(`>> The test runs on: ${browserName}`);
   }
 );
