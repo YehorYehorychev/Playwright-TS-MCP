@@ -47,3 +47,13 @@ test("Should demo locators", async ({ page }) => {
     .getByRole("heading", { name: "We Care About Your Health" })
     .click();
 });
+
+test.only(
+  "Should demo config file",
+  { tag: "@smoke" },
+  async ({ page }, testInfo) => {
+    console.log(
+      `>> Config at runtime: ${JSON.stringify(testInfo.config, null, 2)}`
+    );
+  }
+);
