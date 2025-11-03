@@ -47,3 +47,18 @@ test("Should demo locators", async ({ page }) => {
     .getByRole("heading", { name: "We Care About Your Health" })
     .click();
 });
+
+// testInfo fixure
+test("Should demo config file", async ({ page }, testInfo) => {
+  console.log(
+    `>> Config at runtime: ${JSON.stringify(testInfo.config, null, 2)}`
+  );
+});
+
+// browserName fixture
+test.only("Should demo the fixures", async ({
+  page,
+  browserName,
+}, testInfo) => {
+  console.log(`>> The test runs on: ${browserName}`);
+});
