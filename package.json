@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "demo": "npx playwright test tests/demo/init-test.spec.ts --headed",
+    "demo:global": "npx playwright test tests/demo/init-test.spec.ts",
     "make-apt": "npx playwright test tests/functional/make-appointment.spec.ts --headed",
     "login": "npx playwright test tests/functional/login.spec.ts --headed",
     "pw-adv-cap": "DEBUG=pw:api npx playwright test tests/demo/pw.adv.cap.login.spec.ts --headed",
-    "demo:tag": "npx playwright test --grep @smoke --headed"
+    "demo:tag": "npx playwright test --grep @smoke --headed",
+    "demo:hooks": "npx playwright test tests/demo/hooks-demo.spec.ts --headed"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
   "devDependencies": {
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.9.2",
-    "allure-playwright": "^3.4.2"
+    "allure-playwright": "^3.4.2",
+    "dotenv": "^17.2.3"
   }
 }
