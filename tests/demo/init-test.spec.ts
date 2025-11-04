@@ -56,9 +56,6 @@ test("Should demo config file", async ({ page }, testInfo) => {
 });
 
 // browserName fixture
-test.only("Should demo the fixures", async ({
-  page,
-  browserName,
-}, testInfo) => {
+test("Should demo the fixures", async ({ page, browserName }, testInfo) => {
   console.log(`>> The test runs on: ${browserName}`);
 });
