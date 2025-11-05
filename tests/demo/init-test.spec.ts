@@ -1,4 +1,5 @@
 import { test, expect, devices } from "@playwright/test";
+import constants from "../../data/constants.json";
 
 test("Should load homepage with correct title", async ({ page }) => {
   // 1. Go to the home page
@@ -62,4 +63,15 @@ test("Should demo the fixures", async ({ page, browserName }, testInfo) => {
 
 test("Should demo devices", async ({ page }, testInfo) => {
   console.log(`>> The list of devies: ${Object.keys(devices)}`);
+});
+
+test("Should demo constants data", async ({ page }, testInfo) => {
+  console.log(
+    `>> Constants STATUSCODES: ${JSON.stringify(constants.STATUSCODES)}`
+  );
+  console.log(
+    `>> Constants REQ_RES_ENDPOINTS: ${JSON.stringify(
+      constants.REQ_RES_ENDPOINTS
+    )}`
+  );
 });
