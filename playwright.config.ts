@@ -100,6 +100,10 @@ export default defineConfig({
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
+    {
+      name: "iPhone 11 Pro",
+      use: { ...devices["iPhone 11 Pro"] },
+    },
   ],
 
   /* Run your local dev server before starting the tests */
