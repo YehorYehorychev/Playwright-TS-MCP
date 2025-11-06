@@ -1,5 +1,6 @@
 import { test, expect, devices } from "@playwright/test";
 import constants from "../../data/constants.json";
+import { log } from "../helpers/logger.js";
 
 test("Should load homepage with correct title", async ({ page }) => {
   // 1. Go to the home page
@@ -74,4 +75,24 @@ test("Should demo constants data", async ({ page }, testInfo) => {
       constants.REQ_RES_ENDPOINTS
     )}`
   );
+});
+
+test("Should demo a click action", async ({ page }, testInfo) => {
+  // Default action
+  let ele = page.getByRole("link", { name: "Make Appointment" });
+
+  await page.goto("https://katalon-demo-cura.herokuapp.com/");
+  // await ele.click();
+
+  // Base page action
+  try {
+    await expect(ele).toBeVisible({ timeout: 10_000 }); // Custom timeout: Default - 5 seconds
+    await ele.click();
+  } catch (error) {
+    await log(
+      "error",
+      `Failed to click element: ${ele.toString()}, original error: ${error}`
+    );
+    throw error;
+  }
 });

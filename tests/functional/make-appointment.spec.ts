@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { log } from "../helpers/logger.js";
 
 test.describe(
   "Make an appointment",
@@ -9,9 +10,16 @@ test.describe(
     },
   },
   () => {
-    test.beforeEach("Login with valid creds", async ({ page }) => {
+    test.beforeEach("Login with valid creds", async ({ page }, testInfo) => {
+      // Get the url ffrom the config file
+      const envConfig = testInfo.project.use as any;
+
+      // Custom logs
+      await log("info", `Launching the web app in ${envConfig.envName} env`);
+
       // 1. Launch URL and assert title and header
-      await page.goto("https://katalon-demo-cura.herokuapp.com/");
+      // await page.goto("https://katalon-demo-cura.herokuapp.com/");
+      await page.goto(envConfig.appURL);
       await expect(page).toHaveTitle("CURA Healthcare Service");
       await expect(page.locator("//h1")).toHaveText("CURA Healthcare Service");
 
@@ -20,12 +28,13 @@ test.describe(
       await expect(page.getByText("Please login to make")).toBeVisible();
 
       // Successful login
-      await page.getByLabel("Username").fill("John Doe");
-      await page.getByLabel("Password").fill("ThisIsNotAPassword");
+      await page.getByLabel("Username").fill(process.env.TEST_USER_NAME);
+      await page.getByLabel("Password").fill(process.env.TEST_USER_PASSWORD);
       await page.getByRole("button", { name: "Login" }).click();
 
       // Assert a text
       await expect(page.locator("h2")).toContainText("Make Appointment");
+      await log("info", "The login is successful...");
     });
 
     test(
