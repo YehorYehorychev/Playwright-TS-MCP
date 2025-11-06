@@ -9,9 +9,13 @@ test.describe(
     },
   },
   () => {
-    test.beforeEach("Login with valid creds", async ({ page }) => {
+    test.beforeEach("Login with valid creds", async ({ page }, testInfo) => {
+      // Get the url ffrom the config file
+      const envConfig = testInfo.project.use as any;
+
       // 1. Launch URL and assert title and header
-      await page.goto("https://katalon-demo-cura.herokuapp.com/");
+      // await page.goto("https://katalon-demo-cura.herokuapp.com/");
+      await page.goto(envConfig.appURL);
       await expect(page).toHaveTitle("CURA Healthcare Service");
       await expect(page.locator("//h1")).toHaveText("CURA Healthcare Service");
 
