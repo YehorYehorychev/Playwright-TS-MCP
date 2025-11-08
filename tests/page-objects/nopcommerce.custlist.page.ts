@@ -20,4 +20,28 @@ export default class CustList extends BasePage {
   get noDataAvailableCell() {
     return this.page.locator("[id=search-customers]");
   }
+
+  /** Page Actions */
+  async goToCustomerListPage(custListPage: string) {
+    this.navigateTo(custListPage);
+  }
+
+  async searchAndConfirmUser(
+    firstname: string,
+    lastname: string
+  ): Promise<Boolean> {
+    await log(
+      "info",
+      `Searching the user with firstname: ${firstname} and lastname: ${lastname}...`
+    );
+    // Search actions
+    await this.typeInto(this.firstNameInputBox, firstname);
+    await this.typeInto(this.lastNameInputBox, lastname);
+    await this.click(this.searchBtn);
+
+    // Check whether the customer present
+    await this.page.waitForTimeout(1_500); // 1.5s delay
+    let customerNotFound = await this.noDataAvailableCell.isVisible();
+    return customerNotFound;
+  }
 }
