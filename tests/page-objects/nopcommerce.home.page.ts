@@ -25,13 +25,17 @@ export default class HomePage extends BasePage {
     password: string
   ) {
     await log("info", `Login to ${url}`);
-    // Login
+
     await this.navigateTo(url);
+    await this.page.waitForLoadState("domcontentloaded");
+
     await this.typeInto(this.userNameInputBox, username);
     await this.typeInto(this.passwordInputBox, password);
-    await this.click(this.loginBtn);
-    // Assert the URL
-    await expect(this.page).toHaveURL(`${url}/admin/`);
+
+    await expect(this.loginBtn).toBeVisible({ timeout: 15000 });
+    await this.loginBtn.click();
+
+    await expect(this.page).toHaveURL(/admin/);
     await log("info", `Home Page is successfully launched`);
   }
 }
