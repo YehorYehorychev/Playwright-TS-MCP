@@ -17,4 +17,21 @@ export default class HomePage extends BasePage {
   get loginBtn() {
     return this.page.getByRole("button", { name: "Log in" });
   }
+
+  /** Page Actions */
+  async loginToNopeCommerceApp(
+    url: string,
+    username: string,
+    password: string
+  ) {
+    await log("info", `Login to ${url}`);
+    // Login
+    await this.navigateTo(url);
+    await this.typeInto(this.userNameInputBox, username);
+    await this.typeInto(this.passwordInputBox, password);
+    await this.click(this.loginBtn);
+    // Assert the URL
+    await expect(this.page).toHaveURL(`${url}/admin/`);
+    await log("info", `Home Page is successfully launched`);
+  }
 }
