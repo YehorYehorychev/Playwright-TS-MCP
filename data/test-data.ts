@@ -43,9 +43,9 @@ export default class TestData {
   static apiUserCreation() {
     return [
       {
-        name: "Alex",
-        job: "Thomas",
-        id: "126",
+        name: "Yehor",
+        job: "Yehorychev",
+        id: "7777",
         createdAt: "2025-10-06T01:35:49.877Z",
       },
     ];
