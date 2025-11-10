@@ -16,5 +16,13 @@ test.describe("REST API Demo", () => {
     // Assert the status code
     expect(response.status()).toBe(200);
     await log("info", `The status code is ${response.status()}`);
+
+    // Get list of the users
+    const responseData = await response.json();
+    await log(
+      "info",
+      `The response is: 
+        ${JSON.stringify(responseData)}`
+    );
   });
 });
