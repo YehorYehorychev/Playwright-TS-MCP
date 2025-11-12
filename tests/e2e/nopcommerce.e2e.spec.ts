@@ -20,5 +20,28 @@ test.describe("E2E Customer Search", () => {
       process.env.NOP_COMMERCE_USER_NAME,
       process.env.NOP_COMMERCE_PASSWORD
     );
+
+    // Customer Search
+    const customerListPage = new CustList(page);
+    customerListPage.goToCustomerListPage(
+      `${envConfig.nopCommerceWeb}/Admin/Customer/List`
+    );
+
+    const MOCK_USER = {
+      firstName: "Yehor",
+      lastName: "Yehorychev",
+    };
+
+    let customerNotFound = await customerListPage.searchAndConfirmUser(
+      MOCK_USER.firstName,
+      MOCK_USER.lastName
+    );
+
+    if (customerNotFound) {
+      await log(
+        "warn",
+        `The given user: ${MOCK_USER.firstName} ${MOCK_USER.lastName} could not be found in the portal. Please try to use a different name.`
+      );
+    }
   });
 });
