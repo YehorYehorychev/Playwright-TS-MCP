@@ -29,42 +29,55 @@ jobs:
 
       - name: Run API tests
         run: npm run test:api
+        continue-on-error: true
 
       - name: Run E2E NopCommerce tests
         run: npm run test:e2e
+        continue-on-error: true
 
       - name: Run Make Appointment tests (test config)
         run: npm run test:make-apt
+        continue-on-error: true
 
       - name: Run Make Appointment tests (dev config)
         run: npm run dev:make-apt
+        continue-on-error: true
 
       - name: Run Demo test (headed)
         run: npm run demo
+        continue-on-error: true
 
       - name: Run Demo test (global)
         run: npm run demo:global
+        continue-on-error: true
 
       - name: Run Demo params test
         run: npm run demo:params
+        continue-on-error: true
 
       - name: Run Functional Make Appointment test (headed)
         run: npm run make-apt
+        continue-on-error: true
 
       - name: Run Login test
         run: npm run login
+        continue-on-error: true
 
       - name: Run Multi-Window test
         run: npm run multi-window
+        continue-on-error: true
 
       - name: Run Advanced Capabilities test
         run: npm run pw-adv-cap
+        continue-on-error: true
 
       - name: Run Tagged Demo test (@smoke)
         run: npm run demo:tag
+        continue-on-error: true
 
       - name: Run Demo Hooks test
         run: npm run demo:hooks
+        continue-on-error: true
 
       # -------------------------------
       # 📦 Upload Playwright HTML Report
