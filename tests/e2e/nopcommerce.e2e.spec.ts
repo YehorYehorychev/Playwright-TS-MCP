@@ -4,7 +4,10 @@ import HomePage from "../page-objects/nopcommerce.home.page.js";
 import CustList from "../page-objects/nopcommerce.custlist.page.js";
 
 test.describe("E2E Customer Search", () => {
-  test("Login to NopCommerce Web App", async ({ page }, testInfo) => {
+  test("E2E_TC001: Search the external customers in customer portal", async ({
+    page,
+    request,
+  }, testInfo) => {
     // Env config
     const envConfig = testInfo.project.use as any;
 
